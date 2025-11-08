@@ -1,11 +1,6 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-// import Footer from '../components/Footer.astro'; 
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
----
----
-// This import is correct, just make sure the file
-// is located at 'src/styles/global.css'
+// Import the global.css file here so that it is included on
+// all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
 
 interface Props {
@@ -17,40 +12,43 @@ interface Props {
 const { 
   title, 
   description, 
-  image = '/blog-placeholder-1.jpg' // Ensure this file is in 'public/blog-placeholder-1.jpg'
+  image = '/blog-placeholder-1.jpg' 
 } = Astro.props;
 
-// --- FIX 1 ---
-// 'Astro.site' will now be defined from your config file.
-// We get the '.href' property to create a string.
+// FIX 1: Use .href to ensure we are passing a string to the meta tag
+// We use Astro.site (defined in your config) as the base.
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 
-// --- FIX 2 ---
-// We do the same for the social media image.
-// We use 'Astro.site' as the base, not 'Astro.url', to ensure it's always the root domain.
+// FIX 2: Ensure the social image URL is also an absolute string using .href and Astro.site
 const socialImageURL = new URL(image, Astro.site).href;
 ---
 
+<!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
+<!-- Font preloads -->
 <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
 <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
 
+<!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+<!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 
+<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={socialImageURL} />
 
+<!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={canonicalURL} />
 <meta property="twitter:title" content={title} />
