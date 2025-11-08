@@ -7,44 +7,99 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title="KnowledgeClick — Your Full Technical Business Partner" description="We build, optimize, and automate your digital growth with DFY web design, SEO, SMM, and chatbot bundles." />
+    <link rel="stylesheet" href="/global.css">
+  </head>
+
+  <body class="kk-bg kk-text">
+    <!-- NAV -->
+    <header class="nav">
+      <div class="container nav-inner">
+        <div class="logo">Knowledge<span class="logo-accent">Click</span></div>
+        <nav class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Bundles</a>
+          <a href="#testimonials">Clients</a>
+          <a href="#contact" class="btn small">Get a Strategy</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-inner container">
+          <div class="hero-left">
+            <!-- Rotating Headline -->
+            <h1 id="headline" class="headline">Your Full Technical Business Partner — We Build, Optimize & Automate.</h1>
+            <p class="lead">We combine design, automation and AI-driven strategy to give your business a fast, reliable, and measurable digital backbone.</p>
+
+            <!-- CTA Buttons -->
+            <div class="cta-row">
+              <a href="#contact" class="btn primary large">Get My DFY Strategy Plan</a>
+              <a href="#pricing" class="btn outline large">Explore Bundles</a>
+            </div>
+
+            <!-- Meta -->
+            <div class="hero-meta">
+              <div class="meta-item"><strong>100+</strong><span>Projects</span></div>
+              <div class="meta-item"><strong>95%</strong><span>Client Satisfaction</span></div>
+              <div class="meta-item"><strong>24/7</strong><span>Support</span></div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <!-- Chatbot Card -->
+            <div class="card hero-card kk-card">
+              <div class="card-head">KC-AI • Smart Assistant</div>
+              <div class="card-body">
+                <div class="sim-chat">
+                  <div class="bot">KC-AI: Hi — I can help automate sales, support & leads. Want a demo?</div>
+                  <div class="user">You: Show me how it works →</div>
+                </div>
+                <div class="card-actions">
+                  <a class="btn micro primary" href="#chatbot">See Demo</a>
+                  <a class="btn micro outline" href="#pricing">View Bundles</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Glowing background effects -->
+            <div class="glow-grid">
+              <div class="glow orange"></div>
+              <div class="glow blue"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEXT SECTIONS TO BE UPDATED -->
+    </main>
+
+    <!-- FOOTER -->
+    <Footer />
+
+    <!-- Scripts for animated headlines -->
+    <script>
+      const headlines = [
+        "Your Full Technical Business Partner — We Build, Optimize & Automate.",
+        "From Launch to Growth — KnowledgeClick Handles the Tech, You Focus on Vision.",
+        "Intelligent Design. Smart Marketing. Automation That Scales."
+      ];
+      let idx = 0;
+      const H = document.getElementById('headline');
+      setInterval(() => {
+        H.classList.add('fade-out');
+        setTimeout(() => {
+          idx = (idx + 1) % headlines.length;
+          H.textContent = headlines[idx];
+          H.classList.remove('fade-out');
+          H.classList.add('fade-in');
+          setTimeout(() => H.classList.remove('fade-in'), 700);
+        }, 600);
+      }, 4200);
+    </script>
+  </body>
 </html>
