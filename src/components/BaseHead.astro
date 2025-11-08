@@ -1,47 +1,133 @@
 ---
-// Import the global.css file here so that it is included on
-// all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
-
-interface Props {
-	title: string;
-	description: string;
-	image?: string;
-}
-
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
+import BaseHead from '../components/BaseHead.astro';
+// import Footer from '../components/Footer.astro'; 
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
-<!-- Global Metadata -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta name="generator" content={Astro.generator} />
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title="KnowledgeClick — Your Full Technical Business Partner"
+      description="We build, optimize, and automate your digital growth with DFY web design, SEO, SMM, and chatbot bundles."
+    />
+    </head>
 
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+  <body class="kk-bg kk-text page-load-animation">
+    
+    <header class="nav">
+      <div class="container nav-inner">
+        <a href="#home" class="logo">Knowledge<span class="logo-accent">Click</span></a>
 
-<!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
+        <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
 
-<!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
+        <nav id="nav-menu" class="nav-menu">
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#pricing" class="nav-link">Bundles</a>
+          <a href="#testimonials" class="nav-link">Clients</a>
+          <a href="#contact" class="btn small primary">Get a Strategy</a>
+        </nav>
+      </div>
+    </header>
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-inner container">
+          <div class="hero-left">
+            <h1 id="headline" class="headline">
+              Your Full Technical Business Partner — We Build, Optimize & Automate.
+            </h1>
+            <p class="lead">
+              We combine design, automation, and AI-driven strategy to give your business
+              a fast, reliable, and measurable digital backbone.
+            </p>
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+            <div class="cta-row">
+              <a href="#contact" class="btn primary large">Get My DFY Strategy Plan</a>
+              <a href="#pricing" class="btn outline large">Explore Bundles</a>
+            </div>
+
+            <div class="hero-meta">
+              <div class="meta-item"><strong>100+</strong><span>Projects</span></div>
+              <div class="meta-item"><strong>95%</strong><span>Client Satisfaction</span></div>
+              <div class="meta-item"><strong>24/7</strong><span>Support</span></div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="card hero-card kk-card">
+              <div class="card-head">KC-AI • Smart Assistant</div>
+              <div class="card-body">
+                <div class="sim-chat">
+                  <div class="bot">
+                    KC-AI: Hi! I can automate sales, support & leads. Want a demo?
+                  </div>
+                  <div class="user">You: Show me how it works →</div>
+                </div>
+                <div class="card-actions">
+                  <a class="btn micro primary" href="#chatbot">See Demo</a>
+                  <a class="btn micro outline" href="#pricing">View Bundles</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="glow-grid">
+              <div class="glow orange"></div>
+              <div class="glow blue"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      </main>
+
+    <script>
+      // --- Animated Headline Script ---
+      const headlines = [
+        'Your Full Technical Business Partner — We Build, Optimize & Automate.',
+        'From Launch to Growth — KnowledgeClick Handles the Tech, You Focus on Vision.',
+        'Intelligent Design. Smart Marketing. Automation That Scales.',
+      ];
+      let idx = 0;
+      const H = document.getElementById('headline');
+      if (H) {
+        setInterval(() => {
+          H.classList.add('fade-out');
+          setTimeout(() => {
+            idx = (idx + 1) % headlines.length;
+            H.textContent = headlines[idx];
+            H.classList.remove('fade-out');
+            H.classList.add('fade-in');
+            setTimeout(() => H.classList.remove('fade-in'), 700);
+          }, 600);
+        }, 4200);
+      }
+
+      // --- Mobile Menu Toggle Script ---
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const navLinks = navMenu.querySelectorAll('.nav-link');
+
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+          navMenu.classList.toggle('is-open');
+          menuToggle.classList.toggle('is-open');
+          document.body.classList.toggle('no-scroll');
+        });
+
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('is-open');
+            menuToggle.classList.remove('is-open');
+            document.body.classList.remove('no-scroll');
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
