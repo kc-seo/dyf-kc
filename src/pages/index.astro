@@ -1,32 +1,36 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+// import Footer from '../components/Footer.astro'; // Assuming you will provide this file
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
-
-<!doctype html>
+<!dochead type html>
+<html lang="en">
+  <type html>
 <html lang="en">
   <head>
     <BaseHead
       title="KnowledgeClick — Your Full Technical Business Partner"
       description="We build, optimize, and automate your digital growth with DFY web design, SEO, SMM, and chatbot bundles."
     />
-    <link rel="stylesheet" href="/global.css" />
+    <!-- CSS is now handled by BaseHead.astro -->
   </head>
 
   <body class="kk-bg kk-text page-load-animation">
+    
+    <!-- === NAV === -->
     <header class="nav">
       <div class="container nav-inner">
         <a href="#home" class="logo">Knowledge<span class="logo-accent">Click</span></a>
 
+        <!-- Mobile Menu Toggle Button (Hamburger) -->
         <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation menu">
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
           <span class="hamburger-line"></span>
         </button>
 
+        <!-- Desktop and Mobile Nav Links Container -->
         <nav id="nav-menu" class="nav-menu">
           <a href="#services" class="nav-link">Services</a>
           <a href="#features" class="nav-link">Features</a>
@@ -37,10 +41,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
       </div>
     </header>
 
+    <!-- === MAIN CONTENT === -->
     <main>
+      <!-- === HERO SECTION === -->
       <section id="home" class="hero">
         <div class="hero-inner container">
           <div class="hero-left">
+            <!-- Rotating Headline -->
             <h1 id="headline" class="headline">
               Your Full Technical Business Partner — We Build, Optimize & Automate.
             </h1>
@@ -49,11 +56,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
               a fast, reliable, and measurable digital backbone.
             </p>
 
+            <!-- CTA Buttons -->
             <div class="cta-row">
               <a href="#contact" class="btn primary large">Get My DFY Strategy Plan</a>
               <a href="#pricing" class="btn outline large">Explore Bundles</a>
             </div>
 
+            <!-- Meta -->
             <div class="hero-meta">
               <div class="meta-item"><strong>100+</strong><span>Projects</span></div>
               <div class="meta-item"><strong>95%</strong><span>Client Satisfaction</span></div>
@@ -62,6 +71,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
           </div>
 
           <div class="hero-right">
+            <!-- Chatbot Card -->
             <div class="card hero-card kk-card">
               <div class="card-head">KC-AI • Smart Assistant</div>
               <div class="card-body">
@@ -78,6 +88,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
               </div>
             </div>
 
+            <!-- Glowing background effects -->
             <div class="glow-grid">
               <div class="glow orange"></div>
               <div class="glow blue"></div>
@@ -85,11 +96,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
           </div>
         </div>
       </section>
+      
+      <!-- NEXT SECTIONS WILL GO HERE -->
 
-      </main>
+    </main>
 
+    <!-- 
+      <Footer /> 
+    -->
+
+    <!-- === SCRIPTS === -->
     <script>
-      // --- Animated Headline Script (Your original script) ---
+      // --- Animated Headline Script ---
       const headlines = [
         'Your Full Technical Business Partner — We Build, Optimize & Automate.',
         'From Launch to Growth — KnowledgeClick Handles the Tech, You Focus on Vision.',
@@ -110,22 +128,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         }, 4200);
       }
 
-      // --- Mobile Menu Toggle Script (NEW) ---
+      // --- Mobile Menu Toggle Script ---
       const menuToggle = document.getElementById('menu-toggle');
       const navMenu = document.getElementById('nav-menu');
       const navLinks = navMenu.querySelectorAll('.nav-link');
 
       if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
-          // Toggle 'is-open' class on menu and button
           navMenu.classList.toggle('is-open');
           menuToggle.classList.toggle('is-open');
-          
-          // Toggle body scroll
           document.body.classList.toggle('no-scroll');
         });
 
-        // Close menu when a link is clicked (for single-page anchors)
         navLinks.forEach(link => {
           link.addEventListener('click', () => {
             navMenu.classList.remove('is-open');
