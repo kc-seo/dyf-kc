@@ -1,6 +1,6 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
+import Footer from '../components/Footer.astro'; 
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
@@ -84,13 +84,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         </div>
       </section>
       
+      <!-- Placeholder for Services Section -->
+      <section id="services" style="height: 50vh; display: flex; align-items: center; justify-content: center; color: var(--kk-text-muted);">
+        <h2>[ Services Section Goes Here ]</h2>
+      </section>
       
 
 </main>
 
-    <div style="background-color: red; color: white; padding: 2em; text-align: center;">
-    TEST COMPONENT IS WORKING!
-</div>
+    <Footer /> 
 
 <script>
       // --- Animated Headline Script ---
@@ -102,6 +104,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
       let idx = 0;
       const H = document.getElementById('headline');
       if (H) {
+        // Set up the interval for animation
         setInterval(() => {
           H.classList.add('fade-out');
           setTimeout(() => {
@@ -109,6 +112,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
             H.textContent = headlines[idx];
             H.classList.remove('fade-out');
             H.classList.add('fade-in');
+            // Remove the fade-in class after the animation completes
             setTimeout(() => H.classList.remove('fade-in'), 700);
           }, 600);
         }, 4200);
@@ -117,15 +121,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
       // --- Mobile Menu Toggle Script ---
       const menuToggle = document.getElementById('menu-toggle');
       const navMenu = document.getElementById('nav-menu');
-      const navLinks = navMenu.querySelectorAll('.nav-link');
-
+      // Ensure the menu and toggle elements exist before adding listeners
       if (menuToggle && navMenu) {
+        const navLinks = navMenu.querySelectorAll('a'); 
+        
         menuToggle.addEventListener('click', () => {
           navMenu.classList.toggle('is-open');
           menuToggle.classList.toggle('is-open');
           document.body.classList.toggle('no-scroll');
         });
 
+        // Close menu when a link is clicked
         navLinks.forEach(link => {
           link.addEventListener('click', () => {
             navMenu.classList.remove('is-open');
