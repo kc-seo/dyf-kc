@@ -5,44 +5,55 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
+
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title="KnowledgeClick — Your Full Technical Business Partner" description="We build, optimize, and automate your digital growth with DFY web design, SEO, SMM, and chatbot bundles." />
-    <link rel="stylesheet" href="/global.css">
+    <BaseHead
+      title="KnowledgeClick — Your Full Technical Business Partner"
+      description="We build, optimize, and automate your digital growth with DFY web design, SEO, SMM, and chatbot bundles."
+    />
+    <link rel="stylesheet" href="/global.css" />
   </head>
 
-  <body class="kk-bg kk-text">
-    <!-- NAV -->
+  <body class="kk-bg kk-text page-load-animation">
     <header class="nav">
       <div class="container nav-inner">
-        <div class="logo">Knowledge<span class="logo-accent">Click</span></div>
-        <nav class="nav-links">
-          <a href="#services">Services</a>
-          <a href="#features">Features</a>
-          <a href="#pricing">Bundles</a>
-          <a href="#testimonials">Clients</a>
-          <a href="#contact" class="btn small">Get a Strategy</a>
+        <a href="#home" class="logo">Knowledge<span class="logo-accent">Click</span></a>
+
+        <button id="menu-toggle" class="menu-toggle" aria-label="Open navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <nav id="nav-menu" class="nav-menu">
+          <a href="#services" class="nav-link">Services</a>
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#pricing" class="nav-link">Bundles</a>
+          <a href="#testimonials" class="nav-link">Clients</a>
+          <a href="#contact" class="btn small primary">Get a Strategy</a>
         </nav>
       </div>
     </header>
 
-    <!-- HERO SECTION -->
     <main>
       <section id="home" class="hero">
         <div class="hero-inner container">
           <div class="hero-left">
-            <!-- Rotating Headline -->
-            <h1 id="headline" class="headline">Your Full Technical Business Partner — We Build, Optimize & Automate.</h1>
-            <p class="lead">We combine design, automation and AI-driven strategy to give your business a fast, reliable, and measurable digital backbone.</p>
+            <h1 id="headline" class="headline">
+              Your Full Technical Business Partner — We Build, Optimize & Automate.
+            </h1>
+            <p class="lead">
+              We combine design, automation, and AI-driven strategy to give your business
+              a fast, reliable, and measurable digital backbone.
+            </p>
 
-            <!-- CTA Buttons -->
             <div class="cta-row">
               <a href="#contact" class="btn primary large">Get My DFY Strategy Plan</a>
               <a href="#pricing" class="btn outline large">Explore Bundles</a>
             </div>
 
-            <!-- Meta -->
             <div class="hero-meta">
               <div class="meta-item"><strong>100+</strong><span>Projects</span></div>
               <div class="meta-item"><strong>95%</strong><span>Client Satisfaction</span></div>
@@ -51,12 +62,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
           </div>
 
           <div class="hero-right">
-            <!-- Chatbot Card -->
             <div class="card hero-card kk-card">
               <div class="card-head">KC-AI • Smart Assistant</div>
               <div class="card-body">
                 <div class="sim-chat">
-                  <div class="bot">KC-AI: Hi — I can help automate sales, support & leads. Want a demo?</div>
+                  <div class="bot">
+                    KC-AI: Hi! I can automate sales, support & leads. Want a demo?
+                  </div>
                   <div class="user">You: Show me how it works →</div>
                 </div>
                 <div class="card-actions">
@@ -66,7 +78,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
               </div>
             </div>
 
-            <!-- Glowing background effects -->
             <div class="glow-grid">
               <div class="glow orange"></div>
               <div class="glow blue"></div>
@@ -75,31 +86,54 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
         </div>
       </section>
 
-      <!-- NEXT SECTIONS TO BE UPDATED -->
-    </main>
+      </main>
 
-    <!-- FOOTER -->
-    <Footer />
-
-    <!-- Scripts for animated headlines -->
     <script>
+      // --- Animated Headline Script (Your original script) ---
       const headlines = [
-        "Your Full Technical Business Partner — We Build, Optimize & Automate.",
-        "From Launch to Growth — KnowledgeClick Handles the Tech, You Focus on Vision.",
-        "Intelligent Design. Smart Marketing. Automation That Scales."
+        'Your Full Technical Business Partner — We Build, Optimize & Automate.',
+        'From Launch to Growth — KnowledgeClick Handles the Tech, You Focus on Vision.',
+        'Intelligent Design. Smart Marketing. Automation That Scales.',
       ];
       let idx = 0;
       const H = document.getElementById('headline');
-      setInterval(() => {
-        H.classList.add('fade-out');
-        setTimeout(() => {
-          idx = (idx + 1) % headlines.length;
-          H.textContent = headlines[idx];
-          H.classList.remove('fade-out');
-          H.classList.add('fade-in');
-          setTimeout(() => H.classList.remove('fade-in'), 700);
-        }, 600);
-      }, 4200);
+      if (H) {
+        setInterval(() => {
+          H.classList.add('fade-out');
+          setTimeout(() => {
+            idx = (idx + 1) % headlines.length;
+            H.textContent = headlines[idx];
+            H.classList.remove('fade-out');
+            H.classList.add('fade-in');
+            setTimeout(() => H.classList.remove('fade-in'), 700);
+          }, 600);
+        }, 4200);
+      }
+
+      // --- Mobile Menu Toggle Script (NEW) ---
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const navLinks = navMenu.querySelectorAll('.nav-link');
+
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+          // Toggle 'is-open' class on menu and button
+          navMenu.classList.toggle('is-open');
+          menuToggle.classList.toggle('is-open');
+          
+          // Toggle body scroll
+          document.body.classList.toggle('no-scroll');
+        });
+
+        // Close menu when a link is clicked (for single-page anchors)
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            navMenu.classList.remove('is-open');
+            menuToggle.classList.remove('is-open');
+            document.body.classList.remove('no-scroll');
+          });
+        });
+      }
     </script>
   </body>
 </html>
